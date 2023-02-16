@@ -188,15 +188,6 @@ class LinkedList:
             curreent_node = curreent_node.next_node
         
         print("None")
-    
-    @sort_decorator
-    def sort_list(self):
-        curreent_node = self.head
-        while curreent_node:
-            re_turn = curreent_node.value
-            curreent_node = curreent_node.next_node
-        
-        return re_turn
 
 my_list = LinkedList()
 my_list.insert_after(take_list(num))
