@@ -2,8 +2,39 @@ num = [3,1,5,2,4,7,9,6,8]
 
 def sort_decorator(*args):
     def inner(func):
-        re = sorted(func)
-        return re
+        if len(func) == 1: 
+            return func
+
+        mid = len(func) // 2
+        left_half = func[:mid]
+        right_half = func[mid:]
+
+        inner(left_half)
+        inner(right_half)
+
+        i = 0 
+        j = 0 
+        k = 0 
+
+        while i < len(left_half) and j < len(right_half):
+            if left_half[i] > right_half[j]:
+                func[k] = right_half[j]
+                j += 1
+            else:
+                func[k] = left_half[i]
+                i += 1
+            k += 1
+        
+        while i < len(left_half):
+            func[k] = left_half[i]
+            i += 1
+            k += 1
+
+        while j < len(right_half):
+            func[k] = right_half[j]
+            j += 1
+            k += 1
+        return func
     return inner
 
 @sort_decorator
